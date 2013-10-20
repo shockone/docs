@@ -415,13 +415,13 @@ Changing the response class
 ===========================
 
 CakePHP uses ``CakeResponse`` by default. ``CakeResponse`` is a flexible and
-transparent to use class.  But if you need to replace it with an application
+transparent to use class. If you need to replace it with an application
 specific class, you can override and replace ``CakeResponse`` with
-your own class.  By replacing the CakeResponse used in index.php.
+your own class by replacing CakeResponse in app/webroot/index.php.
 
 This will make all the controllers in your application use ``CustomResponse``
 instead of :php:class:`CakeResponse`.  You can also replace the response
-instance used by setting ``$this->response`` in your controllers. Overriding the
+instance by setting ``$this->response`` in your controllers. Overriding the
 response object is handy during testing, as it allows you to stub
 out the methods that interact with ``header()``.  See the section on
 :ref:`cakeresponse-testing` for more information.
@@ -461,7 +461,7 @@ to send a file as response::
         return $this->response;
     }
 
-As shown in above example as expected you have to pass the file path to the method.
+As shown in the above example, you have to pass the file path to the method.
 CakePHP will send proper content type header if it's a known file type listed in
 `CakeReponse::$_mimeTypes`. You can add new types prior to calling :php:meth:`CakeResponse::file()`
 by using the :php:meth:`CakeResponse::type()` method.
@@ -474,8 +474,7 @@ the browser by specifying the options::
 Sending a string as file
 ========================
 
-To send a file as response which does not exist on disk, for instance when you generate pdf or ics on the fly and want
-to serve the generated string as file you can do that by using::
+You can respond with a file that does not exist on the disk, for instance with a pdf or an ics generated on the fly, and serve the generated string as a file by using::
 
     public function sendIcs() {
         $icsString = $this->Calendar->generateIcs();
@@ -504,7 +503,7 @@ can be called with a few different parameter configurations::
 
 Setting the same header multiple times will result in overwriting the previous
 values, just like regular header calls.  Headers are not sent when
-:php:meth:`CakeResponse::header()` is called either.  They are just buffered
+:php:meth:`CakeResponse::header()` is called; instead they are buffered
 until the response is actually sent.
 
 .. versionadded:: 2.4
@@ -515,7 +514,7 @@ the redirect location header.
 Interacting with browser caching
 ================================
 
-You sometimes need to force browsers to not cache the results of a controller
+You sometimes need to force browsers not to cache the results of a controller
 action.  :php:meth:`CakeResponse::disableCache()` is intended for just that::
 
     public function index() {
@@ -538,8 +537,8 @@ You can also tell clients that you want them to cache responses. By using
 
 The above would tell clients to cache the resulting response for 5 days,
 hopefully speeding up your visitors' experience. ``cache()`` sets the
-Last-Modified value to the first argument. Expires, and Max-age are set based on
-the second parameter. Cache-Control is set to public as well.
+Last-Modified value to the first argument.
+Expires header and the max-age directive are set based on the second parameter. Cache-Control's public directive is set as well.
 
 
 .. _cake-response-caching:
